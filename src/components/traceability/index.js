@@ -13,8 +13,8 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 // let url = 'http://192.168.1.129:12345/api/select'
-// let url = 'http://192.168.1.252/JYTrace/API/ApiSetupMaterial/'
-let url = 'http://172.16.0.104/JYTrace/API/ApiSetupMaterial/'
+let url = 'http://192.168.1.252/JYTrace/API/ApiSetupMaterial/'
+// let url = 'http://172.16.0.104/JYTrace/API/ApiSetupMaterial/'
 let num = 1;
 let ListSweepRecordArray = [];
 
@@ -36,7 +36,6 @@ export default class Traceability extends Component {
   componentDidMount() {
     const { params } = this.props.navigation.state;
     this.setState({ userName: params.userName })
-
   }
 
 
@@ -87,11 +86,10 @@ export default class Traceability extends Component {
         }
       }).catch((error) => {
         console.log('error:', error)
-        Toast.success('网络错误!', 1);
+        Toast.success('网络错误，请联系管理员😢', 1);
       })
     } else {
-      Toast.fail('请输入工站号和物料号!', 1);
-      // alert('请输入工站号和物料号!');
+      Toast.fail('请输入工站号和物料号😯', 1);
     }
   }
 
@@ -126,7 +124,6 @@ export default class Traceability extends Component {
   }
 
   successToast = () => {
-    console.log('successToast')
     ListSweepRecordArray = []
     this.setState({
       ListSweepRecord: ListSweepRecordArray,
@@ -135,7 +132,7 @@ export default class Traceability extends Component {
     })
     ListSweepRecordArray = []
     num = 1
-    Toast.success('换线清料成功 !!!', 1);
+    Toast.success('换线清料成功 !!!✌️', 1);
   }
 
   quit = () => {
@@ -186,17 +183,17 @@ export default class Traceability extends Component {
         </WingBlank>
         <WingBlank>
           <Button type='primary' style={styles.quitButton}
-            onClick={() => alert('删除', '确定删除么???', [
+            onClick={() => alert('清空', '确定清空么?😊', [
               { text: '取消', onPress: () => console.log('cancel') },
               { text: '确定', onPress: () => this.successToast() },
             ])}
           >换线清料</Button>
           <Button type='ghost' style={styles.quitButton}
-            onClick={() => alert('退出登陆', '确定退出么???', [
+            onClick={() => alert('退出登陆', '确定退出么?👋', [
               { text: '取消', onPress: () => console.log('cancel') },
               { text: '确定', onPress: () => this.quit() },
             ])}
-          >{this.state.userName},退出登录</Button>
+          >{this.state.userName},退回上一层</Button>
 
         </WingBlank>
       </View>

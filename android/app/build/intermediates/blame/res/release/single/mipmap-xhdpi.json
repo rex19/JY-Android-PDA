@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/rex.ni/Workshop/jyPDA/android/app/build/intermediates/res/merged/release/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/rex.ni/Workshop/jyPDA/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/rex.ni/ws/Project/jyPDA/android/app/build/intermediates/res/merged/release/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/rex.ni/ws/Project/jyPDA/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/rex.ni/WS/Project/jyPDA/android/app/build/intermediates/res/merged/release/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/rex.ni/WS/Project/jyPDA/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/rex.ni/Workshop/jyPDA/android/C:\\workspece\\ReactNativeProject\\jyPDAProject\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi\\ic_launcher.png",
+        "source": "/Users/rex.ni/Workshop/jyPDA/android/C:\\workspece\\ReactNativeProject\\jyPDAProject\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    }
+]

@@ -10,8 +10,8 @@ const alert = Modal.alert;
 
 let num = 1;
 // let url = 'http://192.168.1.129:12345/api/select'
-// let url = 'http://192.168.1.252/JYTrace/API/ApiCheckLogin/'
-let url = 'http://172.16.0.104/JYTrace/API/ApiCheckLogin/'
+let url = 'http://192.168.1.252/JYTrace/API/ApiCheckLogin/'
+// let url = 'http://172.16.0.104/JYTrace/API/ApiCheckLogin/'
 
 export default class Login extends Component {
 
@@ -52,11 +52,11 @@ export default class Login extends Component {
         }
       }).catch((error) => {
         console.log(error, 'error1')
-        Toast.success('网络错误', 1)
+        Toast.success('网络错误，请联系管理员😨', 1)
       })//.done();
     } else {
       // alert('请输入用户名和密码!')
-      Toast.fail('请输入用户名和密码!', 1);
+      Toast.fail('请输入用户名和密码!😄', 1);
     }
 
   }
@@ -84,7 +84,8 @@ export default class Login extends Component {
   jumpPage = (username, password) => {
     console.log('jump')
     this.setState({ userName: '', passWord: '' })
-    this.props.navigation.navigate('Traceability', { name: '交运追溯系统', userName: username })
+    // this.props.navigation.navigate('Traceability', { name: '交运追溯系统', userName: username })
+    this.props.navigation.navigate('MiddleMenu', { name: '主菜单', userName: username })
   }
 
 
@@ -116,7 +117,7 @@ export default class Login extends Component {
         </List>
         <WhiteSpace size="lg" />
         <WingBlank size="lg">
-          <Button type='primary' onClick={this.handleClick}>登陆</Button>
+          <Button type='primary' onClick={this.handleClick} >登陆</Button>
         </WingBlank>
       </View>
     );
