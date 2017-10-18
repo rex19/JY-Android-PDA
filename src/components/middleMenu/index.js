@@ -20,9 +20,7 @@ const lineObj = [
     value: 'line2',
   }
 ];
-//icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505907451873&di=1eaace4fb1b1575756da9384f0d16507&imgtype=0&src=http%3A%2F%2Fimg.lenovomm.com%2Fs3%2Fimg%2Fapp%2Fapp-img-lestore%2F9100-2015-12-25105310-1451083990085.jpg%3FisCompress%3Dtrue%26width%3D200%26height%3D333%26quantity%3D0.8%26rotate%3Dtrue%26from%3D3gw',
-//icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505907143803&di=49c0cc9bc5b4dae832657c525c9560ff&imgtype=0&src=http%3A%2F%2Fcdns2.freepik.com%2Ffree-photo%2Ffingerprint-ongoing-scanning_318-42483.jpg',
-//
+
 const data = [
   {
     // icon: test1,
@@ -66,7 +64,7 @@ export default class MiddleMenu extends Component {
       Toast.fail('请先选择线体名😉', 1);
     } else if (this.state.lineName.length === 1) {
       index === 0 ? this.props.navigation.navigate('WorkOrder', { name: '工单激活', userName: this.props.navigation.state.params.userName, lineName: this.state.lineName })
-        : this.props.navigation.navigate('Traceability', { name: '追溯记录', userName: this.props.navigation.state.params.userName })
+        : this.props.navigation.navigate('Traceability', { name: '追溯记录', userName: this.props.navigation.state.params.userName, lineName: this.state.lineName })
     }
   }
   // this.props.navigation.navigate('Traceability', { name: '交运追溯系统', userName: username })

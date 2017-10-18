@@ -13,9 +13,11 @@ const Item = List.Item;
 const Brief = Item.Brief;
 const RadioItem = Radio.RadioItem;
 
-// let url = 'http://192.168.1.129:12345/api/select'
-let url = 'http://192.168.1.252/JYTrace/API/ApiSetupMaterial/'
-// let url = 'http://172.16.0.104/JYTrace/API/ApiSetupMaterial/'
+let GetUrl = 'http://192.168.1.252/JYTrace/API/APIGetWorkOrder/?LineCode='
+let PostUrl = 'http://192.168.1.252/JYTrace/API/ApiActivateWorkOrder/'
+// let GetUrl = 'http://192.168.0.99/JYTrace/API/APIGetWorkOrder/?LineCode='
+// let PostUrl = 'http://192.168.0.99/JYTrace/API/ApiActivateWorkOrder/'
+
 let num = 0;
 let ListSweepRecordArray = [];
 let dataArray = [];
@@ -33,6 +35,7 @@ export default class Traceability extends Component {
       workOrderNo: '',
       partNo: '',
       describe: '',
+      activationButtonDisable:true,
       // ListSweepRecord: [],
       // userName: ''
       value: 0,
@@ -42,7 +45,7 @@ export default class Traceability extends Component {
 
   fetchAjax = () => {
     console.log('fetchAjax')
-    fetch('http://192.168.1.252/JYTrace/API/APIGetWorkOrder/?LineCode=' + this.props.navigation.state.params.lineName, {
+    fetch(GetUrl + this.props.navigation.state.params.lineName, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +55,7 @@ export default class Traceability extends Component {
     }).then((responseJson) => {
       console.log('responseJson', responseJson)
       if (responseJson.ReturnCode === 0) {
-        Toast.success(responseJson.Message, 1);
+        // Toast.success(responseJson.Message, 1);
         console.log('responseJson.TodaysWorkOrders', responseJson.TodaysWorkOrders)
         this.setState({
           x: responseJson.TodaysWorkOrders,
@@ -77,14 +80,16 @@ export default class Traceability extends Component {
   onChange = (value) => {
     this.setState({
       value,
-      wrokOrderId: value
+      wrokOrderId: value,
+      activationButtonDisable:false
     });
   };
 
   handleActivation = () => {
-    console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
+    // console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
     if (this.state.wrokOrderId !== '' && this.props.navigation.state.params.userName !== '') {
-      fetch('http://192.168.1.252/JYTrace/API/ApiActivateWorkOrder/', {
+      console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
+      fetch(PostUrl, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -157,7 +162,7 @@ export default class Traceability extends Component {
 
         <Text style={styles.title}>
           当前工单
-                </Text>
+        </Text>
         <WhiteSpace size="sm" />
         <List >
           <InputItem
@@ -178,6 +183,7 @@ export default class Traceability extends Component {
         </List>
 
         <Button type='primary' style={styles.quitButton}
+          disabled={this.state.activationButtonDisable}
           onClick={() => alert('激活', '确定激活么?😄', [
             { text: '取消', onPress: () => console.log('不激活') },
             { text: '确定', onPress: () => this.handleActivation() },

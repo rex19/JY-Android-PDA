@@ -12,9 +12,9 @@ const alert = Modal.alert;
 const Item = List.Item;
 const Brief = Item.Brief;
 
-// let url = 'http://192.168.1.129:12345/api/select'
+
 let url = 'http://192.168.1.252/JYTrace/API/ApiSetupMaterial/'
-// let url = 'http://172.16.0.104/JYTrace/API/ApiSetupMaterial/'
+// let url = 'http://192.168.0.99/JYTrace/API/ApiSetupMaterial/'
 let num = 1;
 let ListSweepRecordArray = [];
 
@@ -24,9 +24,9 @@ export default class Traceability extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stationNoFocused: false,
+      // stationNoFocused: false,
       partNoFocused: false,
-      stationNo: '',
+      // stationNo: '',
       partNo: '',
       ListSweepRecord: [],
       userName: ''
@@ -45,19 +45,20 @@ export default class Traceability extends Component {
     });
   };
 
-  handleStationNoOnBlur = () => {
-    this.setState({
-      partNoFocused: true,
-      stationNoFocused: false
-    })
-  }
+  // handleStationNoOnBlur = () => {
+  //   this.setState({
+  //     partNoFocused: true,
+  //     stationNoFocused: false
+  //   })
+  // }
 
   handlePartNoOnBlur = () => {
+    // console.log('handlePartNoOnBlur', this.state.partNo, this.state.userName, this.props.navigation.state.params.lineName)
     this.setState({
       partNoFocused: false
     })
     //第一步先判断工站号是否为空
-    if (this.state.stationNo !== '' && this.state.partNo !== '') {
+    if ( this.state.partNo !== '') {
       fetch(url, {
         method: "POST",
         headers: {
@@ -66,21 +67,21 @@ export default class Traceability extends Component {
         body: JSON.stringify({
           ScannerId: 1,
           MaterialCode: this.state.partNo,
-          LocationCode: this.state.stationNo,
           OperatorCode: this.state.userName,
+          LineCode: this.props.navigation.state.params.lineName[0],
           MaterialPartNumber: 1
         })
       }).then((response) => {
         return response.json();
       }).then((responseJson) => {
         console.log('responseJson', responseJson)
-        if (responseJson.ReturnCode === 0) {
-          Toast.success(responseJson.Message, 1);
-          this.writeLineSweepRecord(this.state.stationNo, this.state.partNo)
-        } else if (responseJson.ReturnCode !== 0) {
-          Toast.fail(responseJson.Message, 1);
+        if (responseJson.basicReturn.ReturnCode === 0) {
+          Toast.success(responseJson.basicReturn.Message, 1);
+          // this.writeLineSweepRecord(this.state.stationNo, this.state.partNo)
+          this.writeLineSweepRecord(responseJson.materialInfo)
+        } else if (responseJson.basicReturn.ReturnCode !== 0) {
+          Toast.fail(responseJson.basicReturn.Message, 1);
           this.setState({
-            stationNo: '',
             partNo: ''
           })
         }
@@ -89,7 +90,7 @@ export default class Traceability extends Component {
         Toast.success('网络错误，请联系管理员😢', 1);
       })
     } else {
-      Toast.fail('请输入工站号和物料号😯', 1);
+      Toast.fail('请输入物料号😯', 1);
     }
   }
 
@@ -99,27 +100,42 @@ export default class Traceability extends Component {
     })
   }
 
-  writeLineSweepRecord = (stationNo = '1', partNo = '1') => {
-    if (stationNo === '1' && partNo === '1') {
-      console.log('stationNo===1&&partNo===1')
+  writeLineSweepRecord = (materialInfo) => {
+    console.log('writeLineSweepRecord', materialInfo)
+    if (materialInfo.length === 0) {
+      console.log('materialInfo.length===0')
     } else {
-      if (this.state.ListSweepRecord.length === 0) {
-        this.setState({
-          ListSweepRecord: [<Item wrap key={0}>工站号:{stationNo}<Brief>物料ID:{partNo}</Brief><Brief>上料时间: {new Date().toLocaleString()}</Brief></Item>],
-          stationNo: '',
-          partNo: ''
-        })
-        ListSweepRecordArray = [<Item wrap key={0}>工站号:{stationNo}<Brief>物料ID:{partNo}</Brief><Brief>上料时间: {new Date().toLocaleString()}</Brief></Item>]
-      } else if (this.state.ListSweepRecord.length !== 0) (
-        ListSweepRecordArray.push(<Item wrap key={num}>工站号:{stationNo}<Brief>物料ID:{partNo}</Brief><Brief>上料时间: {new Date().toLocaleString()}</Brief></Item>),
-        console.log('this.state.ListSweepRecord!==0', ListSweepRecordArray),
-        this.setState({
-          ListSweepRecord: ListSweepRecordArray,
-          stationNo: '',
-          partNo: ''
-        }),
+      console.log('materialInfo.length!==0',ListSweepRecordArray,this.state.ListSweepRecord)
+      ListSweepRecordArray=[]
+      for (let i = 0; i < materialInfo.length; i++) {
+        ListSweepRecordArray.push(<Item wrap key={num}>工站号:{materialInfo[i].StationCode}<Brief>物料ID:{materialInfo[i].MaterialUID}</Brief><Brief>上料时间: {materialInfo[i].StrSetupDateTime}</Brief></Item>)
         num++
-      )
+      }
+      // ListSweepRecordArray.push(<Item wrap key={num}>工站号:{materialInfo.StationCode}<Brief>物料ID:{materialInfo.MaterialUID}</Brief><Brief>上料时间: {materialInfo.StrSetupDateTime}</Brief></Item>),
+      this.setState({
+        ListSweepRecord: ListSweepRecordArray,
+        partNo: ''
+      })
+      num=0
+
+
+      // if (this.state.ListSweepRecord.le`ngth === 0) {
+      //   this.setState({
+      //     ListSweepRecord: [<Item wrap key={0}>工站号:{stationNo}<Brief>物料ID:{partNo}</Brief><Brief>上料时间: {new Date().toLocaleString()}</Brief></Item>],
+      //     stationNo: '',
+      //     partNo: ''
+      //   })
+      //   ListSweepRecordArray = [<Item wrap key={0}>工站号:{stationNo}<Brief>物料ID:{partNo}</Brief><Brief>上料时间: {new Date().toLocaleString()}</Brief></Item>]
+      // } else if (this.state.ListSweepRecord.length !== 0) (
+      //   ListSweepRecordArray.push(<Item wrap key={num}>工站号:{stationNo}<Brief>物料ID:{partNo}</Brief><Brief>上料时间: {new Date().toLocaleString()}</Brief></Item>),
+      //   console.log('this.state.ListSweepRecord!==0', ListSweepRecordArray),
+      //   this.setState({
+      //     ListSweepRecord: ListSweepRecordArray,
+      //     stationNo: '',
+      //     partNo: ''
+      //   }),
+      //   num++
+      // )
     }
   }
 
@@ -127,7 +143,6 @@ export default class Traceability extends Component {
     ListSweepRecordArray = []
     this.setState({
       ListSweepRecord: ListSweepRecordArray,
-      stationNo: '',
       partNo: ''
     })
     ListSweepRecordArray = []
@@ -143,6 +158,7 @@ export default class Traceability extends Component {
 
 
   render() {
+    console.log('TraceabilityRender', this.state.ListSweepRecord)
     return (
       <View >
         {/* <Text style={styles.title}>
@@ -150,15 +166,9 @@ export default class Traceability extends Component {
                 </Text> */}
         <WhiteSpace size="xl" />
         <List >
+          
           <InputItem
-            onChange={this.handeleStationNoChange('stationNo')}
-            focused={this.state.stationNoFocused}
-            value={this.state.stationNo}
-            maxLength={10}
-            onBlur={this.handleStationNoOnBlur}
-            autoFocus
-          ><Text style={styles.span}>工站号:</Text></InputItem>
-          <InputItem
+          autoFocus
             value={this.state.partNo}
             focused={this.state.partNoFocused}
             onChange={this.handelePartNoChange('partNo')}
@@ -189,7 +199,7 @@ export default class Traceability extends Component {
             ])}
           >换线清料</Button>
           <Button type='ghost' style={styles.quitButton}
-            onClick={() => alert('退出登陆', '确定退出么?👋', [
+            onClick={() => alert('退回上一层', '确定退出么?👋', [
               { text: '取消', onPress: () => console.log('cancel') },
               { text: '确定', onPress: () => this.quit() },
             ])}
@@ -237,3 +247,13 @@ const styles = StyleSheet.create({
   }
 });
 
+
+
+// <InputItem
+// onChange={this.handeleStationNoChange('stationNo')}
+// focused={this.state.stationNoFocused}
+// value={this.state.stationNo}
+// maxLength={10}
+// onBlur={this.handleStationNoOnBlur}
+// autoFocus
+// ><Text style={styles.span}>工站号:</Text></InputItem>

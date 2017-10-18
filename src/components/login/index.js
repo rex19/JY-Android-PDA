@@ -9,9 +9,9 @@ import { Button, List, InputItem, WhiteSpace, WingBlank, Modal, Toast } from 'an
 const alert = Modal.alert;
 
 let num = 1;
-// let url = 'http://192.168.1.129:12345/api/select'
-let url = 'http://192.168.1.252/JYTrace/API/ApiCheckLogin/'
-// let url = 'http://172.16.0.104/JYTrace/API/ApiCheckLogin/'
+
+let LoginUrl = 'http://192.168.1.252/JYTrace/API/ApiCheckLogin/'
+// let LoginUrl = 'http://192.168.0.99/JYTrace/API/ApiCheckLogin/'
 
 export default class Login extends Component {
 
@@ -30,7 +30,7 @@ export default class Login extends Component {
     console.log('login!', typeof (this.state.userName), this.state.passWord)
     //第一步先判断账号密码是否为空
     if (this.state.userName !== '' && this.state.passWord !== '') {
-      fetch(url, {
+      fetch(LoginUrl, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -141,3 +141,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
+
+// <Button type='primary' onClick={this.handleClick} >登陆</Button>
