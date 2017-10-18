@@ -8,13 +8,17 @@ import {
 } from 'react-native';
 
 import { Accordion, Button, List, InputItem, WhiteSpace, Modal, WingBlank, Toast, Radio, } from 'antd-mobile';
+import { PublicParam } from '../../utils/config.js'
+const GetWorkOrderUrl = PublicParam.GetWorkOrderUrl
+const PostWorkOrderUrl = PublicParam.PostWorkOrderUrl
+
 const alert = Modal.alert;
 const Item = List.Item;
 const Brief = Item.Brief;
 const RadioItem = Radio.RadioItem;
 
-let GetUrl = 'http://192.168.1.252/JYTrace/API/APIGetWorkOrder/?LineCode='
-let PostUrl = 'http://192.168.1.252/JYTrace/API/ApiActivateWorkOrder/'
+// let GetUrl = 'http://192.168.1.252/JYTrace/API/APIGetWorkOrder/?LineCode='
+// let PostUrl = 'http://192.168.1.252/JYTrace/API/ApiActivateWorkOrder/'
 // let GetUrl = 'http://192.168.0.99/JYTrace/API/APIGetWorkOrder/?LineCode='
 // let PostUrl = 'http://192.168.0.99/JYTrace/API/ApiActivateWorkOrder/'
 
@@ -45,7 +49,7 @@ export default class Traceability extends Component {
 
   fetchAjax = () => {
     console.log('fetchAjax')
-    fetch(GetUrl + this.props.navigation.state.params.lineName, {
+    fetch(GetWorkOrderUrl + this.props.navigation.state.params.lineName, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json'
@@ -89,7 +93,7 @@ export default class Traceability extends Component {
     // console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
     if (this.state.wrokOrderId !== '' && this.props.navigation.state.params.userName !== '') {
       console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
-      fetch(PostUrl, {
+      fetch(PostWorkOrderUrl, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

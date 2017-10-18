@@ -8,12 +8,14 @@ import {
 } from 'react-native';
 
 import { Accordion, Button, List, InputItem, WhiteSpace, Modal, WingBlank, Toast } from 'antd-mobile';
+import { PublicParam } from '../../utils/config.js'
+const PostTracebilityUrl = PublicParam.PostTracebilityUrl
 const alert = Modal.alert;
 const Item = List.Item;
 const Brief = Item.Brief;
 
 
-let url = 'http://192.168.1.252/JYTrace/API/ApiSetupMaterial/'
+// let PostTracebilityUrl = 'http://192.168.1.252/JYTrace/API/ApiSetupMaterial/'
 // let url = 'http://192.168.0.99/JYTrace/API/ApiSetupMaterial/'
 let num = 1;
 let ListSweepRecordArray = [];
@@ -36,6 +38,33 @@ export default class Traceability extends Component {
   componentDidMount() {
     const { params } = this.props.navigation.state;
     this.setState({ userName: params.userName })
+
+    fetch(PostTracebilityUrl, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        OperatorCode: this.props.navigation.state.params.userName,
+        LineCode: this.props.navigation.state.params.lineName[0],
+        Mode:1
+      })
+    }).then((response) => {
+      return response.json();
+    }).then((responseJson) => {
+      console.log('responseJson', responseJson)
+      this.writeLineSweepRecord(responseJson.materialInfo)
+      // if (responseJson.basicReturn.ReturnCode === 0) {
+      //   Toast.success(responseJson.basicReturn.Message, 1);
+      //   // this.writeLineSweepRecord(this.state.stationNo, this.state.partNo)
+      //   this.writeLineSweepRecord(responseJson.materialInfo)
+      // } else if (responseJson.basicReturn.ReturnCode !== 0) {
+      //   Toast.fail(responseJson.basicReturn.Message, 1);
+      //   this.setState({
+      //     partNo: ''
+      //   })
+      // }
+    })
   }
 
 
@@ -59,7 +88,7 @@ export default class Traceability extends Component {
     })
     //第一步先判断工站号是否为空
     if ( this.state.partNo !== '') {
-      fetch(url, {
+      fetch(PostTracebilityUrl, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -69,7 +98,8 @@ export default class Traceability extends Component {
           MaterialCode: this.state.partNo,
           OperatorCode: this.state.userName,
           LineCode: this.props.navigation.state.params.lineName[0],
-          MaterialPartNumber: 1
+          MaterialPartNumber: 1,
+          Mode:0
         })
       }).then((response) => {
         return response.json();
@@ -139,16 +169,16 @@ export default class Traceability extends Component {
     }
   }
 
-  successToast = () => {
-    ListSweepRecordArray = []
-    this.setState({
-      ListSweepRecord: ListSweepRecordArray,
-      partNo: ''
-    })
-    ListSweepRecordArray = []
-    num = 1
-    Toast.success('换线清料成功 !!!✌️', 1);
-  }
+  // successToast = () => {
+  //   ListSweepRecordArray = []
+  //   this.setState({
+  //     ListSweepRecord: ListSweepRecordArray,
+  //     partNo: ''
+  //   })
+  //   ListSweepRecordArray = []
+  //   num = 1
+  //   Toast.success('换线清料成功 !!!✌️', 1);
+  // }
 
   quit = () => {
     console.log('quit')
@@ -192,12 +222,7 @@ export default class Traceability extends Component {
           </View>
         </WingBlank>
         <WingBlank>
-          <Button type='primary' style={styles.quitButton}
-            onClick={() => alert('清空', '确定清空么?😊', [
-              { text: '取消', onPress: () => console.log('cancel') },
-              { text: '确定', onPress: () => this.successToast() },
-            ])}
-          >换线清料</Button>
+         
           <Button type='ghost' style={styles.quitButton}
             onClick={() => alert('退回上一层', '确定退出么?👋', [
               { text: '取消', onPress: () => console.log('cancel') },
@@ -257,3 +282,11 @@ const styles = StyleSheet.create({
 // onBlur={this.handleStationNoOnBlur}
 // autoFocus
 // ><Text style={styles.span}>工站号:</Text></InputItem>
+
+
+// <Button type='primary' style={styles.quitButton}
+// onClick={() => alert('清空', '确定清空么?😊', [
+//   { text: '取消', onPress: () => console.log('cancel') },
+//   { text: '确定', onPress: () => this.successToast() },
+// ])}
+// >换线清料</Button>

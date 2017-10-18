@@ -6,11 +6,13 @@ import {
   View
 } from 'react-native';
 import { Button, List, InputItem, WhiteSpace, WingBlank, Modal, Toast } from 'antd-mobile';
+import { PublicParam } from '../../utils/config.js'
+const LoginUrl = PublicParam.loginUrl
 const alert = Modal.alert;
 
 let num = 1;
 
-let LoginUrl = 'http://192.168.1.252/JYTrace/API/ApiCheckLogin/'
+// let LoginUrl = 'http://192.168.1.252/JYTrace/API/ApiCheckLogin/'
 // let LoginUrl = 'http://192.168.0.99/JYTrace/API/ApiCheckLogin/'
 
 export default class Login extends Component {
@@ -18,7 +20,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
+      userName: 'admin',
       passWord: '',
       userNameFocued: false,
       passwordFocued: false
