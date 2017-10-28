@@ -7,8 +7,9 @@ import {
   ScrollView
 } from 'react-native';
 
-import { Accordion, Button, List, InputItem, WhiteSpace, Modal, WingBlank, Toast, Radio, } from 'antd-mobile';
+import { Button, List, InputItem, WhiteSpace, Modal, WingBlank, Toast, Radio, Icon, ActivityIndicator } from 'antd-mobile';
 import { PublicParam } from '../../utils/config.js'
+import mockJson from '../../mock/mock.json';
 const GetWorkOrderUrl = PublicParam.GetWorkOrderUrl
 const PostWorkOrderUrl = PublicParam.PostWorkOrderUrl
 
@@ -16,11 +17,6 @@ const alert = Modal.alert;
 const Item = List.Item;
 const Brief = Item.Brief;
 const RadioItem = Radio.RadioItem;
-
-// let GetUrl = 'http://192.168.1.252/JYTrace/API/APIGetWorkOrder/?LineCode='
-// let PostUrl = 'http://192.168.1.252/JYTrace/API/ApiActivateWorkOrder/'
-// let GetUrl = 'http://192.168.0.99/JYTrace/API/APIGetWorkOrder/?LineCode='
-// let PostUrl = 'http://192.168.0.99/JYTrace/API/ApiActivateWorkOrder/'
 
 let num = 0;
 let ListSweepRecordArray = [];
@@ -32,23 +28,52 @@ export default class Traceability extends Component {
     super(props);
     this.state = {
       workOrderNoFocused: false,
-      partNoFocused: false,
+      PlanStartDateTimeFocused: false,
       describeFocused: false,
       workOrderToday: [],
       wrokOrderId: '',
       workOrderNo: '',
-      partNo: '',
+      PlanStartDateTime: '',
       describe: '',
-      activationButtonDisable:true,
+      activationButtonDisable: true,
       // ListSweepRecord: [],
       // userName: ''
       value: 0,
-      x: []
+      x: [],
+      animating: false,
     };
+  }
+/**
+ * mock数据
+ * mockDataDebug1
+ * mockDataDebug2
+ */
+  mockDataDebug1 = () => {
+    let mockGetWorkOrderUrl = mockJson.GetWorkOrderUrl
+    this.setState({
+      x: mockGetWorkOrderUrl.TodaysWorkOrders,
+      workOrderNo: mockGetWorkOrderUrl.TodayActivedWorkOrder.WorkOrderCode,
+      PlanStartDateTime: mockGetWorkOrderUrl.TodayActivedWorkOrder.PlanStartDateTime,
+      describe: mockGetWorkOrderUrl.TodayActivedWorkOrder.PartDescription,
+      animating: false
+    })
+  }
+  mockDataDebug2 = () => {
+    let mockPostWorkOrderUrl = mockJson.PostWorkOrderUrl
+    Toast.success(mockPostWorkOrderUrl.Message, 1);
+    this.mockDataDebug1()
+  }
+
+  componentDidMount() {
+    if (PublicParam.mock) {
+      this.mockDataDebug1()
+    } else if (PublicParam.mock === false) {
+      this.fetchAjax()
+    }
   }
 
   fetchAjax = () => {
-    console.log('fetchAjax')
+    this.showToast()
     fetch(GetWorkOrderUrl + this.props.navigation.state.params.lineName, {
       method: "GET",
       headers: {
@@ -59,15 +84,14 @@ export default class Traceability extends Component {
     }).then((responseJson) => {
       console.log('responseJson', responseJson)
       if (responseJson.ReturnCode === 0) {
-        // Toast.success(responseJson.Message, 1);
         console.log('responseJson.TodaysWorkOrders', responseJson.TodaysWorkOrders)
         this.setState({
           x: responseJson.TodaysWorkOrders,
           workOrderNo: responseJson.TodayActivedWorkOrder.WorkOrderCode,
-          partNo: responseJson.TodayActivedWorkOrder.PartTypeCode,
+          PlanStartDateTime: responseJson.TodayActivedWorkOrder.PlanStartDateTime,
           describe: responseJson.TodayActivedWorkOrder.PartDescription,
+          animating: false
         })
-        // this.writeWorkOrderRecord(responseJson.TodaysWorkOrders)
       } else if (responseJson.ReturnCode !== 0) {
         Toast.fail(responseJson.Message, 1);
       }
@@ -77,61 +101,60 @@ export default class Traceability extends Component {
     })
   }
 
-  componentDidMount() {
-    this.fetchAjax()
-  }
 
   onChange = (value) => {
     this.setState({
       value,
       wrokOrderId: value,
-      activationButtonDisable:false
+      activationButtonDisable: false
     });
   };
 
   handleActivation = () => {
-    // console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
-    if (this.state.wrokOrderId !== '' && this.props.navigation.state.params.userName !== '') {
-      console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
-      fetch(PostWorkOrderUrl, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          WorkOrderId: this.state.wrokOrderId,
-          UserCode: this.props.navigation.state.params.userName
+    if (PublicParam.mock) {
+      this.mockDataDebug2()
+    } else if (PublicParam.mock === false) {
+      if (this.state.wrokOrderId !== '' && this.props.navigation.state.params.userName !== '') {
+        console.log('handleActivation', this.state.wrokOrderId, this.props.navigation.state.params.userName)
+        fetch(PostWorkOrderUrl, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            WorkOrderId: this.state.wrokOrderId,
+            UserCode: this.props.navigation.state.params.userName
+          })
+        }).then((response) => {
+          return response.json();
+        }).then((responseJson) => {
+          console.log('responseJson', responseJson)
+          if (responseJson.ReturnCode === 0) {
+            Toast.success(responseJson.Message, 1);
+            this.fetchAjax()
+          } else if (responseJson.ReturnCode !== 0) {
+            Toast.fail(responseJson.Message, 1);
+          }
+        }).catch((error) => {
+          console.log('error:', error)
+          Toast.success('网络错误!', 1);
         })
-      }).then((response) => {
-        return response.json();
-      }).then((responseJson) => {
-        console.log('responseJson', responseJson)
-        if (responseJson.ReturnCode === 0) {
-          Toast.success(responseJson.Message, 1);
-          this.fetchAjax()
-        } else if (responseJson.ReturnCode !== 0) {
-          Toast.fail(responseJson.Message, 1);
-        }
-      }).catch((error) => {
-        console.log('error:', error)
-        Toast.success('网络错误!', 1);
-      })
-    } else {
-      Toast.fail('请先选择要激活的工单号😂!', 1);
+      } else {
+        Toast.fail('请先选择要激活的工单号😂!', 1);
+      }
     }
   }
 
+  showToast = () => {
+    console.log('showToast')
+    this.setState({ animating: true });
+    // this.closeTimer = setTimeout(() => {
+    //   this.setState({ animating: !this.state.animating });
+    // }, 1000);
+  }
+
   render() {
-    console.log('__________lineName', this.props.navigation.state.params.lineName)
     const { value, workOrderToday } = this.state;
-    // const data = [
-    //   { value: 0, label: '工单号:P100006', extra: '物料号:M-0001' },
-    //   { value: 1, label: '工单号:P100007', extra: '物料号:M-0002' },
-    //   { value: 2, label: '工单号:P100008', extra: '物料号:M-0001' },
-    //   { value: 3, label: '工单号:P100009', extra: '物料号:M-0002' },
-    //   { value: 4, label: '工单号:P1000010', extra: '物料号:M-0001' },
-    //   { value: 5, label: '工单号:P1000011', extra: '物料号:M-0002' }
-    // ];
     return (
       <View >
         <WingBlank size="lg">
@@ -143,20 +166,13 @@ export default class Traceability extends Component {
               showsVerticalScrollIndicator={false}
             >
               <List renderHeader={() => '当天可选工单'}>
-
-                {/* {workOrderToday} */}
-                {/* <RadioItem key={0} checked={value === 0} onChange={() => this.onChange(0, 'P100006', 'M-0001')}>
-                  工单号:P100006&nbsp;物料号:M-0001
-                </RadioItem>
-                <RadioItem key={1} checked={value === 1} onChange={() => this.onChange(1, 'P100007', 'M-0002')}>
-                  工单号:P100007&nbsp;物料号:M-0002
-                </RadioItem> */}
-
                 {this.state.x.map(i => (
-                  console.log(' TodaysWorkOrders.map', i, i.WorkOrderId),
-                  <RadioItem key={i.WorkOrderId} checked={value === i.WorkOrderId} onChange={() => this.onChange(i.WorkOrderId)}>
-                    工单号:{i.WorkOrderCode}&nbsp;&nbsp;&nbsp;物料号:{i.PartTypeCode}...
-                  </RadioItem>
+                  <View key={i.WorkOrderId}>
+                    <RadioItem style={{ borderTopWidth: 1, borderTopColor: '#DDDDDD' }} checked={value === i.WorkOrderId} onChange={() => this.onChange(i.WorkOrderId)}>
+                      工单号:{i.WorkOrderCode}
+                    </RadioItem>
+                    <Brief style={{ borderWidth: 0 }} >&nbsp;&nbsp;<Icon type='right' size='xxs'></Icon>开始时间:{i.PlanStartDateTime.toLocaleString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')} </Brief>
+                  </View>
                 ))}
               </List>
 
@@ -175,10 +191,10 @@ export default class Traceability extends Component {
             editable={false}
           ><Text style={styles.span}>工单号:</Text></InputItem>
           <InputItem
-            value={this.state.partNo}
-            focused={this.state.partNoFocused}
+            value={this.state.PlanStartDateTime.toLocaleString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')}
+            focused={this.state.PlanStartDateTimeFocused}
             editable={false}
-          ><Text style={styles.span}>物料号:</Text></InputItem>
+          ><Text style={styles.span}>开始时间:</Text></InputItem>
           <InputItem
             value={this.state.describe}
             focused={this.state.describeFocused}
@@ -193,7 +209,12 @@ export default class Traceability extends Component {
             { text: '确定', onPress: () => this.handleActivation() },
           ])}
         >激活</Button>
-
+        <ActivityIndicator
+          animating={this.state.animating}
+          toast
+          size="large"
+          text="Loading..."
+        />
       </View>
     );
   }
@@ -227,11 +248,10 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red'
   },
   span: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold'
   },
   quitButton: {
     marginTop: 10
   }
 });
-

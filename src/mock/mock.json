@@ -1,0 +1,458 @@
+{
+  "ApiCheckLogin": {
+    "ReturnCode": 0,
+    "Message": "登录成功",
+    "ReturVaule": null
+  },
+  "GetWorkOrderUrl": {
+    "TodayActivedWorkOrder": {
+      "WorkOrderId": 40,
+      "WorkOrderCode": "20170922Test1",
+      "WorkOrderDescription": null,
+      "PartTypeCode": "110102040060",
+      "PartTypeName": null,
+      "PartDescription": "1-6档离合器壳体总成",
+      "LineId": 0,
+      "LineCode": null,
+      "PlannedQuantity": 100,
+      "FinishedQuantity": 41,
+      "PartContainerQuantity": null,
+      "CustomerOrderNumber": null,
+      "State": 10,
+      "PlanStartDateTime": "2017-09-22T04:00:00",
+      "PlanEndDateTime": "2017-09-22T17:00:00",
+      "ActualStartDateTime": "2017-09-29T17:11:02.417",
+      "ActualEndDateTime": "2017-10-18T16:44:09.927",
+      "CheckCodeBegin": null,
+      "CheckCodeEnd": null
+    },
+    "TodaysWorkOrders": [
+      {
+        "WorkOrderId": 7,
+        "WorkOrderCode": "Wo006",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 600,
+        "FinishedQuantity": 60,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "c6",
+        "State": 20,
+        "PlanStartDateTime": "2017-09-02T09:30:16",
+        "PlanEndDateTime": "2017-09-02T10:30:54",
+        "ActualStartDateTime": "2017-09-06T13:51:26.557",
+        "ActualEndDateTime": "2017-09-25T14:19:00.657",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      },
+      {
+        "WorkOrderId": 8,
+        "WorkOrderCode": "Wo007",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 700,
+        "FinishedQuantity": 70,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "c7",
+        "State": 20,
+        "PlanStartDateTime": "2017-09-01T09:30:16",
+        "PlanEndDateTime": "2017-09-02T10:30:54",
+        "ActualStartDateTime": "2017-09-06T13:51:26.557",
+        "ActualEndDateTime": "2017-09-27T14:58:55.42",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      },
+      {
+        "WorkOrderId": 22,
+        "WorkOrderCode": "Wo011",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 1000,
+        "FinishedQuantity": 90,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "order11",
+        "State": 20,
+        "PlanStartDateTime": "2017-09-21T04:00:00",
+        "PlanEndDateTime": "2017-09-21T18:00:00",
+        "ActualStartDateTime": "2017-09-12T15:42:03.007",
+        "ActualEndDateTime": "2017-09-26T10:12:45.897",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      },
+      {
+        "WorkOrderId": 67,
+        "WorkOrderCode": "100000076798",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 0,
+        "FinishedQuantity": 0,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "",
+        "State": 0,
+        "PlanStartDateTime": "2017-10-16T08:00:00",
+        "PlanEndDateTime": "2017-10-16T20:00:00",
+        "ActualStartDateTime": "2017-10-23T16:21:05.377",
+        "ActualEndDateTime": "2017-10-23T16:21:05.377",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      },
+      {
+        "WorkOrderId": 68,
+        "WorkOrderCode": "100000076799",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 0,
+        "FinishedQuantity": 0,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "",
+        "State": 0,
+        "PlanStartDateTime": "2017-10-17T08:00:00",
+        "PlanEndDateTime": "2017-10-17T20:00:00",
+        "ActualStartDateTime": "2017-10-23T16:21:05.38",
+        "ActualEndDateTime": "2017-10-23T16:21:05.38",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      },
+      {
+        "WorkOrderId": 69,
+        "WorkOrderCode": "100000076800",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 0,
+        "FinishedQuantity": 0,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "",
+        "State": 0,
+        "PlanStartDateTime": "2017-10-18T08:00:00",
+        "PlanEndDateTime": "2017-10-18T20:00:00",
+        "ActualStartDateTime": "2017-10-23T16:21:05.387",
+        "ActualEndDateTime": "2017-10-23T16:21:05.387",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      },
+      {
+        "WorkOrderId": 70,
+        "WorkOrderCode": "100000076801",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 0,
+        "FinishedQuantity": 0,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "",
+        "State": 0,
+        "PlanStartDateTime": "2017-10-19T08:00:00",
+        "PlanEndDateTime": "2017-10-19T20:00:00",
+        "ActualStartDateTime": "2017-10-23T16:21:05.393",
+        "ActualEndDateTime": "2017-10-23T16:21:05.393",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      },
+      {
+        "WorkOrderId": 71,
+        "WorkOrderCode": "100000076802",
+        "WorkOrderDescription": null,
+        "PartTypeCode": "110102040060",
+        "PartTypeName": null,
+        "PartDescription": "1-6档离合器壳体总成",
+        "LineId": 0,
+        "LineCode": null,
+        "PlannedQuantity": 0,
+        "FinishedQuantity": 0,
+        "PartContainerQuantity": null,
+        "CustomerOrderNumber": "",
+        "State": 0,
+        "PlanStartDateTime": "2017-10-20T08:00:00",
+        "PlanEndDateTime": "2017-10-20T20:00:00",
+        "ActualStartDateTime": "2017-10-23T16:21:05.397",
+        "ActualEndDateTime": "2017-10-23T16:21:05.397",
+        "CheckCodeBegin": null,
+        "CheckCodeEnd": null
+      }
+    ],
+    "ReturnCode": 0,
+    "Message": "取得成功",
+    "ReturVaule": null
+  },
+  "PostWorkOrderUrl": {
+    "ReturnCode": 0,
+    "Message": "激活成功",
+    "ReturVaule": null
+  },
+  "PostTracebilityUrlMode1": {
+    "materialInfo": [
+      {
+        "StationId": 40,
+        "StationCode": "OP10_1",
+        "MaterialUID": "330102100056_20171013",
+        "SetupDateTime": "2017-10-18T16:02:50.977",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/18 16:02:50"
+      },
+      {
+        "StationId": 41,
+        "StationCode": "OP10_2",
+        "MaterialUID": "330306010085_20171013",
+        "SetupDateTime": "2017-10-15T23:54:06.48",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/15 23:54:06"
+      },
+      {
+        "StationId": 43,
+        "StationCode": "OP30_1",
+        "MaterialUID": "330102120075_20171013",
+        "SetupDateTime": "2017-10-15T23:53:05.453",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/15 23:53:05"
+      },
+      {
+        "StationId": 44,
+        "StationCode": "OP30_2",
+        "MaterialUID": "330306010087_20171013",
+        "SetupDateTime": "2017-10-15T23:54:23.437",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/15 23:54:23"
+      },
+      {
+        "StationId": 46,
+        "StationCode": "OP50",
+        "MaterialUID": "330305010039_20171013",
+        "SetupDateTime": "2017-10-15T23:54:34.19",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/15 23:54:34"
+      },
+      {
+        "StationId": 47,
+        "StationCode": "OP60",
+        "MaterialUID": "330301030045(大卡簧24280145)_20170925",
+        "SetupDateTime": "2017-10-27T14:27:54.88",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 14:27:54"
+      },
+      {
+        "StationId": 48,
+        "StationCode": "OP70_1",
+        "MaterialUID": "330102130020_20171012",
+        "SetupDateTime": "2017-10-18T16:10:01.627",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/18 16:10:01"
+      },
+      {
+        "StationId": 49,
+        "StationCode": "OP70_2",
+        "MaterialUID": "330102060050_20170923",
+        "SetupDateTime": "2017-10-15T16:36:29.67",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/15 16:36:29"
+      },
+      {
+        "StationId": 50,
+        "StationCode": "OP70_3",
+        "MaterialUID": "330102050052(摩擦片24267679)_20171028",
+        "SetupDateTime": "2017-10-26T14:01:44.447",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/26 14:01:44"
+      },
+      {
+        "StationId": 51,
+        "StationCode": "OP70_4",
+        "MaterialUID": "330102060050_20170923",
+        "SetupDateTime": "2017-10-15T16:36:29.687",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/15 16:36:29"
+      },
+      {
+        "StationId": 52,
+        "StationCode": "OP70_5",
+        "MaterialUID": "330102050052(摩擦片24267679)_20170928",
+        "SetupDateTime": "2017-10-26T10:06:07.483",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/26 10:06:07"
+      },
+      {
+        "StationId": 53,
+        "StationCode": "OP70_6",
+        "MaterialUID": "",
+        "SetupDateTime": null,
+        "State": 1,
+        "StrSetupDateTime": ""
+      },
+      {
+        "StationId": 54,
+        "StationCode": "OP80",
+        "MaterialUID": "330301030044(小卡簧24267681)_20170909",
+        "SetupDateTime": "2017-10-26T11:09:35.847",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/26 11:09:35"
+      }
+    ],
+    "basicReturn": null
+  },
+  "PostTracebilityUrlMode01": {
+    "materialInfo": [
+      {
+        "StationId": null,
+        "StationCode": "OP70_3",
+        "MaterialUID": null,
+        "SetupDateTime": null,
+        "State": null,
+        "StrSetupDateTime": ""
+      },
+      {
+        "StationId": null,
+        "StationCode": "OP70_5",
+        "MaterialUID": null,
+        "SetupDateTime": null,
+        "State": null,
+        "StrSetupDateTime": ""
+      }
+    ],
+    "basicReturn": {
+      "ReturnCode": -1,
+      "Message": "",
+      "ReturVaule": [
+        "OP70_3",
+        "OP70_5"
+      ]
+    }
+  },
+  "PostTracebilityUrlMode00": {
+    "materialInfo": [
+      {
+        "StationId": 40,
+        "StationCode": "OP10_1",
+        "MaterialUID": "330102100056(1-6档壳体24278266)_20171013",
+        "SetupDateTime": "2017-10-27T13:36:19.133",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:36:19"
+      },
+      {
+        "StationId": 41,
+        "StationCode": "OP10_2",
+        "MaterialUID": "330306010085(壳体密封圈24277333)_20171013",
+        "SetupDateTime": "2017-10-27T13:36:14.33",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:36:14"
+      },
+      {
+        "StationId": 43,
+        "StationCode": "OP30_1",
+        "MaterialUID": "330102120075(活塞24278262)_20171010",
+        "SetupDateTime": "2017-10-27T13:35:42.533",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:35:42"
+      },
+      {
+        "StationId": 44,
+        "StationCode": "OP30_2",
+        "MaterialUID": "330306010087(活塞密封圈24274176)_20171013",
+        "SetupDateTime": "2017-10-27T13:36:03.42",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:36:03"
+      },
+      {
+        "StationId": 46,
+        "StationCode": "OP50",
+        "MaterialUID": "330305010039(碟形弹簧24282417)_20171013",
+        "SetupDateTime": "2017-10-27T13:35:06.713",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:35:06"
+      },
+      {
+        "StationId": 47,
+        "StationCode": "OP60",
+        "MaterialUID": "330301030045(大卡簧24280145)_20171013",
+        "SetupDateTime": "2017-10-27T13:34:59.777",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:34:59"
+      },
+      {
+        "StationId": 48,
+        "StationCode": "OP70_1",
+        "MaterialUID": "330102130020(波纹片24280046)_20171013",
+        "SetupDateTime": "2017-10-27T13:34:42.247",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:34:42"
+      },
+      {
+        "StationId": 49,
+        "StationCode": "OP70_2",
+        "MaterialUID": "",
+        "SetupDateTime": null,
+        "State": 1,
+        "StrSetupDateTime": ""
+      },
+      {
+        "StationId": 50,
+        "StationCode": "OP70_3",
+        "MaterialUID": "330102050052(摩擦片24267679)_20171013",
+        "SetupDateTime": "2017-10-27T13:17:25.973",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:17:25"
+      },
+      {
+        "StationId": 51,
+        "StationCode": "OP70_4",
+        "MaterialUID": "",
+        "SetupDateTime": null,
+        "State": 1,
+        "StrSetupDateTime": ""
+      },
+      {
+        "StationId": 52,
+        "StationCode": "OP70_5",
+        "MaterialUID": "330102050052(摩擦片24267679)_20171013",
+        "SetupDateTime": "2017-10-27T13:34:14.507",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:34:14"
+      },
+      {
+        "StationId": 53,
+        "StationCode": "OP70_6",
+        "MaterialUID": "330102040033(支撑片24267680)_20171013",
+        "SetupDateTime": "2017-10-27T13:34:02.11",
+        "State": 1,
+        "StrSetupDateTime": "2017/10/27 13:34:02"
+      },
+      {
+        "StationId": 54,
+        "StationCode": "OP80",
+        "MaterialUID": "",
+        "SetupDateTime": null,
+        "State": 1,
+        "StrSetupDateTime": ""
+      }
+    ],
+    "basicReturn": {
+      "ReturnCode": 0,
+      "Message": "成功",
+      "ReturVaule": ""
+    }
+  }
+}
