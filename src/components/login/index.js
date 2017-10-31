@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  NetInfo
 } from 'react-native';
 import { Button, List, InputItem, WhiteSpace, WingBlank, Modal, Toast } from 'antd-mobile';
 import { PublicParam } from '../../utils/config.js'
@@ -38,44 +39,47 @@ export default class Login extends Component {
   }
 
   handleClick = () => {
-    if (PublicParam.mock) {
-      this.mockDataDebug()
-    } else if (PublicParam.mock === false) {
-      //第一步先判断账号密码是否为空
-      if (this.state.userName !== '' && this.state.passWord !== '') {
-        this.showToast() //loading
-        fetch(LoginUrl, {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            LoginId: this.state.userName,
-            Password: this.state.passWord,
-          })
-        }).then((response) => {
-          return response.json();
-        }).then((responseJson) => {
-          console.log('responseJson', responseJson)
-          if (responseJson.ReturnCode === 0) {
+    // console.log('login-this.props.navigation.state.params.userName', this.props.navigation.state.params, this.props.navigation.state)
+    if (this.props.navigation.state.routeName !== 'MiddleMenu') {
+      if (PublicParam.mock) {
+
+        this.mockDataDebug()
+      } else if (PublicParam.mock === false) {
+        //第一步先判断账号密码是否为空
+        if (this.state.userName !== '' && this.state.passWord !== '') {
+          this.showToast() //loading
+          fetch(LoginUrl, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              LoginId: this.state.userName,
+              Password: this.state.passWord,
+            })
+          }).then((response) => {
+            return response.json();
+          }).then((responseJson) => {
+            console.log('responseJson', responseJson)
+            if (responseJson.ReturnCode === 0) {
+              this.setState({ animating: false })
+              this.jumpPage(this.state.userName, this.state.passWord)
+              Toast.success(responseJson.Message, 1);
+            } else if (responseJson.ReturnCode !== 0) {
+              console.log('用户名或密码错误,', responseJson.Message)
+              this.setState({ animating: false })
+              Toast.fail(responseJson.Message, 1);
+            }
+          }).catch((error) => {
+            console.log(error, 'error1')
             this.setState({ animating: false })
-            this.jumpPage(this.state.userName, this.state.passWord)
-            Toast.success(responseJson.Message, 1);
-          } else if (responseJson.ReturnCode !== 0) {
-            console.log('用户名或密码错误,', responseJson.Message)
-            this.setState({ animating: false })
-            Toast.fail(responseJson.Message, 1);
-          }
-        }).catch((error) => {
-          console.log(error, 'error1')
-          this.setState({ animating: false })
-          Toast.success('网络错误，请联系管理员😨', 1)
-        })//.done();
-      } else {
-        Toast.fail('请输入用户名和密码!😄', 1);
+            Toast.success('网络错误，请联系管理员😨', 1)
+          })//.done();
+        } else {
+          Toast.fail('请输入用户名和密码!😄', 1);
+        }
       }
     }
-
   }
 
   handleUserNameOnBlur = () => {

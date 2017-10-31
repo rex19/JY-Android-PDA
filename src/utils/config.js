@@ -6,17 +6,17 @@
  * @param PostWorkOrderUrl   post 工单请求
  * @param PostTracebilityUrl   post 追溯请求
  */
-const ip = '192.168.1.252'
-const post = '80'
+// const ip = '192.168.1.252'
+// const post = '80'
 
 // const ip = '192.168.1.113'
 // const post = '80'
 
-// const ip = '192.168.0.99'
-// const post = '80'
+const ip = '192.168.0.99'
+const post = '80'
 
 export const PublicParam = {
-  name: 'AntD Admin',
+  name: 'JyPDA',
   mock: true,
   loginUrl: `http://${ip}:${post}/JYTrace/API/ApiCheckLogin/`,
   GetWorkOrderUrl: `http://${ip}:${post}/JYTrace/API/APIGetWorkOrder/?LineCode=`,
