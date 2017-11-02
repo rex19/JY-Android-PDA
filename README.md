@@ -4,7 +4,6 @@
 [![react native](https://img.shields.io/badge/reactnative-0.47.0-brightgreen.svg?style=flat-square)](https://github.com/facebook/react-native)
 [![react navigation](https://img.shields.io/badge/react%20navigation-^1.0.0-yellowgreen.svg?style=flat-square)](https://github.com/react-community/react-navigation)
 [![antd-mobile](https://img.shields.io/badge/antd%20mobile-^1.6.5-orange.svg?style=flat-square)](https://github.com/ant-design/ant-design-mobile)
-
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
