@@ -24,7 +24,6 @@ export default class Login extends Component {
       passwordFocued: false,
       animating: false
     };
-    // this.props.navigation.state.parmas.name = this.props.name
   }
 
   showToast = () => {
@@ -39,7 +38,6 @@ export default class Login extends Component {
   }
 
   handleClick = () => {
-    // console.log('login-this.props.navigation.state.params.userName', this.props.navigation.state.params, this.props.navigation.state)
     if (this.props.navigation.state.routeName !== 'MiddleMenu') {
       if (PublicParam.mock) {
 
@@ -105,7 +103,6 @@ export default class Login extends Component {
   jumpPage = (username, password) => {
     console.log('jump')
     this.setState({ userName: '', passWord: '' })
-    // this.props.navigation.navigate('Traceability', { name: '交运追溯系统', userName: username })
     this.props.navigation.navigate('MiddleMenu', { name: '主菜单', userName: username })
   }
 
@@ -114,7 +111,7 @@ export default class Login extends Component {
     return (
       <View >
         <Text style={styles.title}>
-          交运登陆
+          **系统登陆
                 </Text>
         <List >
           <InputItem

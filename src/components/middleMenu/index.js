@@ -6,10 +6,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import { Card, WingBlank, WhiteSpace, Button, Picker, List, Grid, Toast, Flex } from 'antd-mobile';
-// import test1 from '../../img/test1.jpg';
-// import test2 from '../../img/test2.jpg';
-// let test1 = '../../img/test1.jpg'
-// let test2 = '../../img/test2.jpg'
+
 
 const lineObj = [
   {
@@ -23,11 +20,9 @@ const lineObj = [
 
 const data = [
   {
-    // icon: test1,
     text: `工单`,
   },
   {
-    // icon: test2,
     text: `扫料`,
   }
 ]
@@ -52,7 +47,6 @@ export default class MiddleMenu extends Component {
   }
   quit = () => {
     console.log('quit')
-    // this.props.navigation.navigate('Login')
     this.props.navigation.goBack();
   }
 
@@ -67,7 +61,6 @@ export default class MiddleMenu extends Component {
         : this.props.navigation.navigate('Traceability', { name: '追溯记录', userName: this.props.navigation.state.params.userName, lineName: this.state.lineName })
     }
   }
-  // this.props.navigation.navigate('Traceability', { name: '交运追溯系统', userName: username })
   render() {
     return (
       <View >
@@ -121,20 +114,17 @@ const styles = StyleSheet.create({
   subTitle: {
     marginBottom: 10,
     fontSize: 20,
-    // padding: '30px 0 18px 0'
   },
 
   viewClass: {
     width: '100%',
     height: 140,
-    //color: '#e6e6e6',
     borderRadius: 4,
     borderWidth: 1,
     backgroundColor: '#0090e5',
     borderColor: '#0090e5',
   },
   textClass: {
-    //backgroundColor: '#3783F1',
     color: '#FBFDFF',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -144,23 +134,5 @@ const styles = StyleSheet.create({
   quitButton: {
     marginTop: 20
   }
-  // lineSelect:{
-  //   marginBottom:'10%'
-  // },
-  // viewBox:{
-  //   display:'flex',
-  //   width:'600px',
-  //   height:'230px',
-  //   backgroundColor: '#ccc',
-  //   justifyContent:' space-around',
-  //   alignItems:'baseline',
-  //   flexFlow:' row wrap',
-  //   alignContent:' space-between'
-  // },
-  //   <View className={styles.subTitle}>
-  //   <Text>菜单</Text>
-  //   <Grid style={styles.textClass} data={data} columnNum={2} isCarousel carouselMaxRow={4} onClick={this.handleClickStation.bind(this)} />
-  //   <WhiteSpace size="lg" />
-  // </View>
 
 });

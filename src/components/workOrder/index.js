@@ -36,18 +36,16 @@ export default class Traceability extends Component {
       PlanStartDateTime: '',
       describe: '',
       activationButtonDisable: true,
-      // ListSweepRecord: [],
-      // userName: ''
       value: 0,
       x: [],
       animating: false,
     };
   }
-/**
- * mock数据
- * mockDataDebug1
- * mockDataDebug2
- */
+  /**
+   * mock数据
+   * mockDataDebug1
+   * mockDataDebug2
+   */
   mockDataDebug1 = () => {
     let mockGetWorkOrderUrl = mockJson.GetWorkOrderUrl
     this.setState({
@@ -148,9 +146,6 @@ export default class Traceability extends Component {
   showToast = () => {
     console.log('showToast')
     this.setState({ animating: true });
-    // this.closeTimer = setTimeout(() => {
-    //   this.setState({ animating: !this.state.animating });
-    // }, 1000);
   }
 
   render() {
@@ -236,16 +231,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: 20,
     height: 200,
-    // showsVerticalScrollIndicator :true,
-    // overScrollMode :'auto',
   },
   Accordion: {
     marginTop: 10,
     marginBottom: 5,
     height: 180,
     width: '100%',
-    // overflow:'scroll',
-    // backgroundColor: 'red'
   },
   span: {
     fontSize: 15,

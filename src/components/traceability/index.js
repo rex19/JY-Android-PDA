@@ -25,7 +25,6 @@ export default class Traceability extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // stationNoFocused: false,
       partNoFocused: false,
       StationCode: '',
       partNo: '',
@@ -246,9 +245,6 @@ export default class Traceability extends Component {
     ];
     return (
       <View >
-        {/* <Text style={styles.title}>
-                    追溯系统
-                </Text> */}
         <WhiteSpace size="xl" />
         <List >
           <InputItem
@@ -287,8 +283,6 @@ export default class Traceability extends Component {
         <Modal
           title="请选择工站号"
           transparent
-          // onClose={this.onClose}
-          // maskClosable
           visible={this.state.visible}
           // closable
           footer={footerButtons}
@@ -326,17 +320,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: 20,
     height: 295,
-    // showsVerticalScrollIndicator :true,
-    // overScrollMode :'auto',
-
   },
   Accordion: {
     marginTop: 10,
     marginBottom: 10,
     height: 290,
     width: '100%',
-    // overflow:'scroll',
-    // backgroundColor: 'red'
   },
   span: {
     fontSize: 20,
