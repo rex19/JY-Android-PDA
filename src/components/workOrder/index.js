@@ -36,6 +36,8 @@ export default class Traceability extends Component {
       PlanStartDateTime: '',
       describe: '',
       activationButtonDisable: true,
+      // ListSweepRecord: [],
+      // userName: ''
       value: 0,
       x: [],
       animating: false,
@@ -231,6 +233,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: 20,
     height: 200,
+    // showsVerticalScrollIndicator :true,
+    // overScrollMode :'auto',
   },
   Accordion: {
     marginTop: 10,

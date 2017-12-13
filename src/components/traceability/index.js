@@ -18,13 +18,14 @@ const Brief = Item.Brief;
 
 let num = 1;
 let ListSweepRecordArray = [];
-
+let TotalWarning = {}
 // console.log('new Date',new Date().toLocaleString())
 //x.substring(2,4)  截取字符串
 export default class Traceability extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // stationNoFocused: false,
       partNoFocused: false,
       StationCode: '',
       partNo: '',
@@ -36,16 +37,11 @@ export default class Traceability extends Component {
     };
   }
 
-  mockDataDebug1 = () => {
-    let mockPostTracebilityUrlMode1 = mockJson.PostTracebilityUrlMode1
-    this.writeLineSweepRecord(mockPostTracebilityUrlMode1.materialInfo)
-  }
-
 
   componentDidMount() {
     const { params } = this.props.navigation.state;
     this.setState({ userName: params.userName })
-
+    //判断是否是mock数据模式
     if (PublicParam.mock) {
       this.mockDataDebug1()
     } else if (PublicParam.mock === false) {
@@ -56,18 +52,26 @@ export default class Traceability extends Component {
         },
         body: JSON.stringify({
           MaterialCode: "",
-          OperatorCode: this.props.navigation.state.params.userName,
-          LineCode: this.props.navigation.state.params.lineName[0],
+          OperatorCode: this.props.navigation.state.params.userName,  //已登陆的用户名
+          LineCode: this.props.navigation.state.params.lineName[0],  //线体名
           Mode: 1
         })
       }).then((response) => {
         return response.json();
       }).then((responseJson) => {
         console.log('responseJson', responseJson)
-        this.writeLineSweepRecord(responseJson.materialInfo)
+        this.writeTotalWarningString(responseJson.TotalWarningString)  //全局报警提示
+        this.writeLineSweepRecord(responseJson.materialInfo)   //扫料记录刷入
       })
     }
   }
+
+
+  mockDataDebug1 = () => {
+    let mockPostTracebilityUrlMode1 = mockJson.PostTracebilityUrlMode1
+    this.writeLineSweepRecord(mockPostTracebilityUrlMode1.materialInfo)
+  }
+
   showToast = () => {
     this.setState({ animating: true });
   }
@@ -79,7 +83,7 @@ export default class Traceability extends Component {
   };
 
 
-
+  //输完物料号失去焦点自动运行此方法  重新获取扫料记录和全局报警提示
   handlePartNoOnBlur = () => {
     this.setState({
       partNoFocused: false
@@ -103,15 +107,15 @@ export default class Traceability extends Component {
       }).then((response) => {
         return response.json();
       }).then((responseJson) => {
-        console.log('responseJson', responseJson)
         if (responseJson.basicReturn.ReturnCode === 0) {
           this.setState({ animating: false })
           Toast.success(responseJson.basicReturn.Message, 1);
+          //check是否有全局警告 是否显示
+          this.writeTotalWarningString(responseJson.TotalWarningString)
+          //check是否有扫料记录，并map成List
           this.writeLineSweepRecord(responseJson.materialInfo)
         } else if (responseJson.basicReturn.ReturnCode === -1) {
           //先显示工站号下拉菜单，点击确认后将工站号和物料号返回给后台，工站号下拉菜单选择
-          console.log('responseJson.basicReturn.ReturnCode === -1')
-          console.log('responseJson.materialInfo', responseJson.materialInfo)
           let materialInfoArray = responseJson.materialInfo
           let StationCodeList = []
           for (let i = 0; i < materialInfoArray.length; i++) {
@@ -148,21 +152,25 @@ export default class Traceability extends Component {
   writeLineSweepRecord = (materialInfo) => {
     console.log('writeLineSweepRecord', materialInfo)
     if (materialInfo.length === 0) {
-      console.log('materialInfo.length===0')
     } else {
-      console.log('materialInfo.length!==0', ListSweepRecordArray, this.state.ListSweepRecord)
       ListSweepRecordArray = []
       for (let i = 0; i < materialInfo.length; i++) {
-        ListSweepRecordArray.push(<Item wrap key={num}>工站号:{materialInfo[i].StationCode}<Brief>物料ID:{materialInfo[i].MaterialUID}</Brief><Brief>上料时间: {materialInfo[i].StrSetupDateTime}</Brief></Item>)
+        ListSweepRecordArray.push(<Item wrap key={num}><Brief>工站号:{materialInfo[i].StationCode}</Brief><Brief>物料ID:{materialInfo[i].MaterialUID}</Brief><Brief>上料时间: {materialInfo[i].StrSetupDateTime}</Brief>{materialInfo[i].WarningString.replace(/(^\s*)|(\s*$)/g, "").length == 0 ? null : <Text style={{ color: 'red' }}>{materialInfo[i].WarningString}</Text>} </Item>)
         num++
       }
-      // ListSweepRecordArray.push(<Item wrap key={num}>工站号:{materialInfo.StationCode}<Brief>物料ID:{materialInfo.MaterialUID}</Brief><Brief>上料时间: {materialInfo.StrSetupDateTime}</Brief></Item>),
       this.setState({
         ListSweepRecord: ListSweepRecordArray,
         partNo: '',
         StationCode: ''
       })
       num = 0
+    }
+  }
+  writeTotalWarningString = (TotalWarningString) => {
+    if (TotalWarningString.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
+      TotalWarning = {}
+    } else {
+      TotalWarning = <Text style={{ fontSize: 12, color: 'red', backgroundColor: '#FBC400' }}>{TotalWarningString}</Text>
     }
   }
 
@@ -182,12 +190,11 @@ export default class Traceability extends Component {
     });
   }
 
+  //关闭选择工站Modals 再次获取扫料记录和全局报警提示
   onClose = () => {
     if (this.state.StationCode === '') {
-      console.log('this.state.StationCode===""')
       Toast.success('请选择工站😢', 1);
     } else if (this.state.StationCode !== '') {
-      console.log('this.state.StationCode!==""')
       this.setState({
         visible: false
       });
@@ -210,12 +217,12 @@ export default class Traceability extends Component {
       }).then((response) => {
         return response.json();
       }).then((responseJson) => {
-        console.log('responseJson.+++++++++++++++++', responseJson)
         this.setState({
           StationCode: '',
           partNo: '',
           animating: false
         });
+        this.writeTotalWarningString(responseJson.TotalWarningString)
         this.writeLineSweepRecord(responseJson.materialInfo)
         Toast.success(responseJson.basicReturn.Message, 1);
       }).catch((error) => {
@@ -255,7 +262,7 @@ export default class Traceability extends Component {
             onBlur={this.handlePartNoOnBlur}
           ><Text style={styles.span}>物料号:</Text></InputItem>
         </List>
-
+        {JSON.stringify(TotalWarning) == "{}" ? <Text></Text> : TotalWarning}
         <WhiteSpace size="sm" />
         <WingBlank size="lg">
           <View style={styles.Accordion}>
@@ -283,6 +290,8 @@ export default class Traceability extends Component {
         <Modal
           title="请选择工站号"
           transparent
+          // onClose={this.onClose}
+          // maskClosable
           visible={this.state.visible}
           // closable
           footer={footerButtons}
@@ -320,11 +329,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: 20,
     height: 295,
+
   },
   Accordion: {
     marginTop: 10,
     marginBottom: 10,
-    height: 290,
+    height: 270,
     width: '100%',
   },
   span: {

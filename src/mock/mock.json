@@ -213,7 +213,8 @@
         "MaterialUID": "330102100056_20171013",
         "SetupDateTime": "2017-10-18T16:02:50.977",
         "State": 1,
-        "StrSetupDateTime": "2017/10/18 16:02:50"
+        "StrSetupDateTime": "2017/10/18 16:02:50",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 41,
@@ -221,7 +222,8 @@
         "MaterialUID": "330306010085_20171013",
         "SetupDateTime": "2017-10-15T23:54:06.48",
         "State": 1,
-        "StrSetupDateTime": "2017/10/15 23:54:06"
+        "StrSetupDateTime": "2017/10/15 23:54:06",
+        "WarningString": ""
       },
       {
         "StationId": 43,
@@ -229,7 +231,8 @@
         "MaterialUID": "330102120075_20171013",
         "SetupDateTime": "2017-10-15T23:53:05.453",
         "State": 1,
-        "StrSetupDateTime": "2017/10/15 23:53:05"
+        "StrSetupDateTime": "2017/10/15 23:53:05",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 44,
@@ -237,7 +240,8 @@
         "MaterialUID": "330306010087_20171013",
         "SetupDateTime": "2017-10-15T23:54:23.437",
         "State": 1,
-        "StrSetupDateTime": "2017/10/15 23:54:23"
+        "StrSetupDateTime": "2017/10/15 23:54:23",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 46,
@@ -245,7 +249,8 @@
         "MaterialUID": "330305010039_20171013",
         "SetupDateTime": "2017-10-15T23:54:34.19",
         "State": 1,
-        "StrSetupDateTime": "2017/10/15 23:54:34"
+        "StrSetupDateTime": "2017/10/15 23:54:34",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 47,
@@ -253,7 +258,8 @@
         "MaterialUID": "330301030045(大卡簧24280145)_20170925",
         "SetupDateTime": "2017-10-27T14:27:54.88",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 14:27:54"
+        "StrSetupDateTime": "2017/10/27 14:27:54",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 48,
@@ -261,7 +267,8 @@
         "MaterialUID": "330102130020_20171012",
         "SetupDateTime": "2017-10-18T16:10:01.627",
         "State": 1,
-        "StrSetupDateTime": "2017/10/18 16:10:01"
+        "StrSetupDateTime": "2017/10/18 16:10:01",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 49,
@@ -269,7 +276,8 @@
         "MaterialUID": "330102060050_20170923",
         "SetupDateTime": "2017-10-15T16:36:29.67",
         "State": 1,
-        "StrSetupDateTime": "2017/10/15 16:36:29"
+        "StrSetupDateTime": "2017/10/15 16:36:29",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 50,
@@ -277,7 +285,8 @@
         "MaterialUID": "330102050052(摩擦片24267679)_20171028",
         "SetupDateTime": "2017-10-26T14:01:44.447",
         "State": 1,
-        "StrSetupDateTime": "2017/10/26 14:01:44"
+        "StrSetupDateTime": "2017/10/26 14:01:44",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 51,
@@ -285,7 +294,8 @@
         "MaterialUID": "330102060050_20170923",
         "SetupDateTime": "2017-10-15T16:36:29.687",
         "State": 1,
-        "StrSetupDateTime": "2017/10/15 16:36:29"
+        "StrSetupDateTime": "2017/10/15 16:36:29",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 52,
@@ -293,7 +303,8 @@
         "MaterialUID": "330102050052(摩擦片24267679)_20170928",
         "SetupDateTime": "2017-10-26T10:06:07.483",
         "State": 1,
-        "StrSetupDateTime": "2017/10/26 10:06:07"
+        "StrSetupDateTime": "2017/10/26 10:06:07",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 53,
@@ -301,7 +312,8 @@
         "MaterialUID": "",
         "SetupDateTime": null,
         "State": 1,
-        "StrSetupDateTime": ""
+        "StrSetupDateTime": "",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 54,
@@ -309,10 +321,12 @@
         "MaterialUID": "330301030044(小卡簧24267681)_20170909",
         "SetupDateTime": "2017-10-26T11:09:35.847",
         "State": 1,
-        "StrSetupDateTime": "2017/10/26 11:09:35"
+        "StrSetupDateTime": "2017/10/26 11:09:35",
+        "WarningString": "警告：此工站为2日前扫料"
       }
     ],
-    "basicReturn": null
+    "basicReturn": null,
+    "TotalWarningString": "请检查下记工站扫料时间：[OP10_1][OP10_2][OP30_1][OP30_2][OP50][OP60][OP70_1][OP70_2][OP70_3][OP70_4][OP70_5][OP70_6][OP80]"
   },
   "PostTracebilityUrlMode01": {
     "materialInfo": [
@@ -322,7 +336,8 @@
         "MaterialUID": null,
         "SetupDateTime": null,
         "State": null,
-        "StrSetupDateTime": ""
+        "StrSetupDateTime": "",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": null,
@@ -330,7 +345,8 @@
         "MaterialUID": null,
         "SetupDateTime": null,
         "State": null,
-        "StrSetupDateTime": ""
+        "StrSetupDateTime": "",
+        "WarningString": "警告：此工站为2日前扫料"
       }
     ],
     "basicReturn": {
@@ -340,7 +356,8 @@
         "OP70_3",
         "OP70_5"
       ]
-    }
+    },
+    "TotalWarningString": "请检查下记工站扫料时间：[OP10_1][OP10_2][OP30_1][OP30_2][OP50][OP60][OP70_1][OP70_2][OP70_3][OP70_4][OP70_5][OP70_6][OP80]"
   },
   "PostTracebilityUrlMode00": {
     "materialInfo": [
@@ -350,7 +367,8 @@
         "MaterialUID": "330102100056(1-6档壳体24278266)_20171013",
         "SetupDateTime": "2017-10-27T13:36:19.133",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:36:19"
+        "StrSetupDateTime": "2017/10/27 13:36:19",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 41,
@@ -358,7 +376,8 @@
         "MaterialUID": "330306010085(壳体密封圈24277333)_20171013",
         "SetupDateTime": "2017-10-27T13:36:14.33",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:36:14"
+        "StrSetupDateTime": "2017/10/27 13:36:14",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 43,
@@ -366,7 +385,8 @@
         "MaterialUID": "330102120075(活塞24278262)_20171010",
         "SetupDateTime": "2017-10-27T13:35:42.533",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:35:42"
+        "StrSetupDateTime": "2017/10/27 13:35:42",
+        "WarningString": ""
       },
       {
         "StationId": 44,
@@ -374,7 +394,8 @@
         "MaterialUID": "330306010087(活塞密封圈24274176)_20171013",
         "SetupDateTime": "2017-10-27T13:36:03.42",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:36:03"
+        "StrSetupDateTime": "2017/10/27 13:36:03",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 46,
@@ -382,7 +403,8 @@
         "MaterialUID": "330305010039(碟形弹簧24282417)_20171013",
         "SetupDateTime": "2017-10-27T13:35:06.713",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:35:06"
+        "StrSetupDateTime": "2017/10/27 13:35:06",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 47,
@@ -390,7 +412,8 @@
         "MaterialUID": "330301030045(大卡簧24280145)_20171013",
         "SetupDateTime": "2017-10-27T13:34:59.777",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:34:59"
+        "StrSetupDateTime": "2017/10/27 13:34:59",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 48,
@@ -398,7 +421,8 @@
         "MaterialUID": "330102130020(波纹片24280046)_20171013",
         "SetupDateTime": "2017-10-27T13:34:42.247",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:34:42"
+        "StrSetupDateTime": "2017/10/27 13:34:42",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 49,
@@ -406,7 +430,8 @@
         "MaterialUID": "",
         "SetupDateTime": null,
         "State": 1,
-        "StrSetupDateTime": ""
+        "StrSetupDateTime": "",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 50,
@@ -414,7 +439,8 @@
         "MaterialUID": "330102050052(摩擦片24267679)_20171013",
         "SetupDateTime": "2017-10-27T13:17:25.973",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:17:25"
+        "StrSetupDateTime": "2017/10/27 13:17:25",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 51,
@@ -422,7 +448,8 @@
         "MaterialUID": "",
         "SetupDateTime": null,
         "State": 1,
-        "StrSetupDateTime": ""
+        "StrSetupDateTime": "",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 52,
@@ -430,7 +457,8 @@
         "MaterialUID": "330102050052(摩擦片24267679)_20171013",
         "SetupDateTime": "2017-10-27T13:34:14.507",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:34:14"
+        "StrSetupDateTime": "2017/10/27 13:34:14",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 53,
@@ -438,7 +466,8 @@
         "MaterialUID": "330102040033(支撑片24267680)_20171013",
         "SetupDateTime": "2017-10-27T13:34:02.11",
         "State": 1,
-        "StrSetupDateTime": "2017/10/27 13:34:02"
+        "StrSetupDateTime": "2017/10/27 13:34:02",
+        "WarningString": "警告：此工站为2日前扫料"
       },
       {
         "StationId": 54,
@@ -446,13 +475,15 @@
         "MaterialUID": "",
         "SetupDateTime": null,
         "State": 1,
-        "StrSetupDateTime": ""
+        "StrSetupDateTime": "",
+        "WarningString": "警告：此工站为2日前扫料"
       }
     ],
     "basicReturn": {
       "ReturnCode": 0,
       "Message": "成功",
       "ReturVaule": ""
-    }
+    },
+    "TotalWarningString": "请检查下记工站扫料时间：[OP10_1][OP10_2][OP30_1][OP30_2][OP50][OP60][OP70_1][OP70_2][OP70_3][OP70_4][OP70_5][OP70_6][OP80]"
   }
 }
